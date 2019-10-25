@@ -35,6 +35,8 @@ let board1 = document.querySelectorAll('.cell')
 
 /*----- functions -----*/   
 function handleClick(event) {
+        let xBoxes = [];
+        let oBoxes = [];
         turn++;
         console.log(turn);
         if (turn > gameDrawMove) {
@@ -42,14 +44,15 @@ function handleClick(event) {
             return;
         }
         let t = event.target;
-        // console.log(t.tagName); // ==> DIV
+        console.log("Cell ID: "+t.id); // ==> cell number
         if (turn % 2  ===   0) {
             message.textContent = "Player O's turn";
             t.innerHTML = "X";
             t.style.backgroundColor='red';
             xWinCheck++;
             console.log("xWinCheck = "+xWinCheck);
-            // xBoxes.push
+            xBoxes.push(t.id);
+            console.log("xBoxes: " + xBoxes);
         }
         if (turn % 2 === 1) {
             message.textContent = "Player X's turn";
@@ -57,12 +60,12 @@ function handleClick(event) {
             t.style.backgroundColor='yellow';
             oWinCheck++;
             console.log("oWinCheck = "+oWinCheck);
+            oBoxes.push(t.id);
+            console.log("oBoxes: " + oBoxes);
         }
     }
 
 function init() {
-    let xBoxes = [];
-    let oBoxes = [];
     render(); 
 } //end of init function
 
