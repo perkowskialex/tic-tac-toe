@@ -21,11 +21,129 @@ header {
     text-align: center;
 }
 
-.board {
-    display: grid;
+#message {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    padding: 10px;
+    color: black;
+}
+
+.top-row {
+    padding: 100px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.mid-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bot-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.top-row > #but1 {
+    justify-content: center;
+    background-color: white;
+    color: black;
     width: 50px;
     height: 50px;
-    font-size: 30px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.top-row > #but2 {
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.top-row > #but3 {
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.mid-row > #but4 {
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.mid-row > #but5 {
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.mid-row > #but6 {
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.bot-row > #but7 {
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+.bot-row > #but8 {
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.bot-row > #but9 {
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    border: 1px solid black;
+    text-align: center;
 }
 
 body {
@@ -33,6 +151,4 @@ body {
     display: grid;
     font-family: Arial, Helvetica, sans-serif; 
     background-color: lightpink;
-    color: whitesmoke;
-    font-weight: bold;
 }
