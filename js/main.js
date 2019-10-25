@@ -13,6 +13,8 @@ let xWinCheck = 0;
 let oWinCheck = 0;
 const gameDrawMove = 10; //when turn hits this number, declare draw
 let turn = 1; 
+let xBoxes = [];
+let oBoxes =[];
 
 
 /*----- app's state (variables) -----*/
@@ -35,8 +37,6 @@ let board1 = document.querySelectorAll('.cell')
 
 /*----- functions -----*/   
 function handleClick(event) {
-        let xBoxes = [];
-        let oBoxes = [];
         turn++;
         console.log(turn);
         if (turn > gameDrawMove) {
@@ -63,6 +63,7 @@ function handleClick(event) {
             oBoxes.push(t.id);
             console.log("oBoxes: " + oBoxes);
         }
+        render();
     }
 
 function init() {
@@ -74,12 +75,12 @@ function render() {
         //Game over, you drew
         message.textContent = 'Draw! Play again?';
     }
-    if (xWinCheck > 3 || oWinCheck > 3) {
-    winPattern.forEach(element, idx, function() {
-        if (element[idx].includes(xBoxes)) {
+    if (xWinCheck >= 3 || oWinCheck >= 3) {
+    winPattern.forEach(e, function() {
+        if (e.includes(xBoxes)) {
             message.textContent = 'Player X won!'
         }
-        if (element[idx].includes(oBoxes)) {
+        if (e.includes(oBoxes)) {
             message.textContent = 'Player O won!'
         }
         else {
