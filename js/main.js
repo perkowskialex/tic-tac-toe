@@ -22,26 +22,23 @@ const message = document.getElementById('message');
 const winner = document.getElementById('winner');
 
 /*----- event listeners -----*/
-// document.querySelector('board')
-//   .addEventListener('click', handleClick);
 let board1 = document.querySelectorAll('.cell')
-// .addEventListener('click');
+
 board1.forEach(element => {
     // console.log(element)
     element.addEventListener('click', handleClick);
 });
-// console.log();
-// replayBtn.addEventListener('click', init); EVENTUALLY WE WILL ADD THIS
 
 
 /*----- functions -----*/
 function handleClick(event) {
     turn++;
-    console.log(turn);
+    console.log('turn: ' + turn);
     if (turn >= gameDrawMove) {
         message.textContent = "Draw! Want to play again?";
         return;
     }
+
     let t = event.target;
     console.log("Cell ID: " + t.id); // ==> cell number
     if (turn % 2 === 0) {
@@ -58,16 +55,24 @@ function handleClick(event) {
         oBoxes.push(t.id);
         console.log("oBoxes: " + oBoxes);
     }
-    for (let i = 0; i < winPattern.length; i++) {
+}
+
+function checkWin() {
+    for (i = 0; i < winPattern.length;i++) {
         if (xBoxes.includes(winPattern[i][0]) && xBoxes.includes(winPattern[i][1]) && xBoxes.includes(winPattern[i][2])) {
-            winner.textContent = 'Player X wins';
+            winner.innerHTML = 'Player X wins';
             console.log(winner);
+            return;
         }
+    }
+    for (i = 0; i < winPattern.length;i++) {
         if (oBoxes.includes(winPattern[i][0]) && oBoxes.includes(winPattern[i][1]) && oBoxes.includes(winPattern[i][2])) {
-            winner.textContent = 'Player O wins';
+            winner.innerHTML = 'Player O wins';
             console.log(winner);
+            return;
         }
     }
 }
+
 //call functions
 // init();
