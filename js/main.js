@@ -39,6 +39,11 @@ function handleClick(event) {
         return;
     }
 
+    if (xBoxes.length>=3 || oBoxes.length>=3) {
+        console.log('calling winCheck function');
+        checkWin();
+    }
+
     let t = event.target;
     console.log("Cell ID: " + t.id); // ==> cell number
     if (turn % 2 === 0) {
@@ -58,15 +63,27 @@ function handleClick(event) {
 }
 
 function checkWin() {
-    for (i = 0; i < winPattern.length;i++) {
+    for (i = 0; i < winPattern.length;  i++) {
+        console.log("looping thru XXX "+ winPattern[i])
+        if (xBoxes === winPattern[i]) {
+            winner.innerHTML = 'Player X wins';
+            console.log(winner);
+            return;
+        }
         if (xBoxes.includes(winPattern[i][0]) && xBoxes.includes(winPattern[i][1]) && xBoxes.includes(winPattern[i][2])) {
             winner.innerHTML = 'Player X wins';
             console.log(winner);
             return;
         }
     }
-    for (i = 0; i < winPattern.length;i++) {
+    for (i = 0; i < winPattern.length;  i++) {
+        console.log("looping thru OOO "+ winPattern[i])
         if (oBoxes.includes(winPattern[i][0]) && oBoxes.includes(winPattern[i][1]) && oBoxes.includes(winPattern[i][2])) {
+            winner.innerHTML = 'Player O wins';
+            console.log(winner);
+            return;
+        }
+        if (oBoxes === winPattern[i]) {
             winner.innerHTML = 'Player O wins';
             console.log(winner);
             return;
