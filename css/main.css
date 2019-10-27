@@ -29,6 +29,14 @@ header {
     color: black;
 }
 
+#winner {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    padding: 10px;
+    color: black;
+}
+
 .top-row {
     padding: 100px 0px 0px 0px;
     display: flex;
