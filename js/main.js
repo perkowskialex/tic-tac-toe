@@ -89,11 +89,21 @@ function checkWin() {
         if (xStrings.includes(element)) {
             message.textContent = 'X WINS!';
             xWin = true;
+                board1.forEach(function(element) {
+                    if (xStrings.split('').includes(element.id)) {
+                        element.style.backgroundColor = 'gold';
+                    }
+                });
             return;
         }
         else if (oStrings.includes(element)) {
             message.textContent = 'O WINS';
             oWin = true;
+            board1.forEach(function(element) {
+                if (oStrings.split('').includes(element.id)) {
+                    element.style.backgroundColor = 'gold';
+                }
+            });
             return;
         }
     });
