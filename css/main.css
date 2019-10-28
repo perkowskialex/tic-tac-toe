@@ -22,13 +22,13 @@ header {
 }
 
 .top-row >.cell:hover {
-    background-color: lightslategrey;
+    background-color: lightgrey;
 }
 .mid-row >.cell:hover {
-    background-color: lightslategrey;
+    background-color: lightgrey;
 }
 .bot-row >.cell:hover {
-    background-color: lightslategrey;
+    background-color: lightgrey;
 }
 
 #message {
@@ -68,6 +68,7 @@ header {
     border: 1px solid black;
     text-align: center;
     padding: 20px;
+    border-radius:5%;
 }
 
 .mid-row > .cell {
@@ -80,6 +81,7 @@ header {
     border: 1px solid black;
     text-align: center;
     padding: 20px;
+    border-radius:5%;
 }
 
 .bot-row > .cell  {
@@ -92,6 +94,7 @@ header {
     border: 1px solid black;
     text-align: center;
     padding: 20px;
+    border-radius: 5%;
 }
 
 #reset {
