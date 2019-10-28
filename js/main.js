@@ -86,7 +86,7 @@ function checkWin() {
     let oStrings = oBoxes.join('');
     console.log("oStrings: "+oStrings);
     winPatternStr.forEach(function(element) {
-        if (xStrings.includes(element)) {
+        if (xStrings.includes(element) || xStrings.split('').includes(element)) {
             message.textContent = 'X WINS!';
             xWin = true;
                 board1.forEach(function(element) {
@@ -96,7 +96,7 @@ function checkWin() {
                 });
             return;
         }
-        else if (oStrings.includes(element)) {
+        else if (oStrings.includes(element) || oStrings.split('').includes(element)) {
             message.textContent = 'O WINS';
             oWin = true;
             board1.forEach(function(element) {
