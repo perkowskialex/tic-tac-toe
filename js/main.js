@@ -13,6 +13,7 @@ const gameDrawMove = 10; //when turn hits this number, declare draw
 let turn = 1;
 let xBoxes = [];
 let oBoxes = [];
+let winPatternStr = [];
 
 
 /*----- app's state (variables) -----*/
@@ -33,19 +34,17 @@ board1.forEach(element => {
 /*----- functions -----*/
 function handleClick(event) {
     turn++;
+    let t = event.target; 
     console.log('turn: ' + turn);
+    console.log("Cell ID: " + t.id); // ==> cell number
     if (turn >= gameDrawMove) {
         message.textContent = "Draw! Want to play again?";
         return;
     }
-
-    if (xBoxes.length>=3 || oBoxes.length>=3) {
+    if (xBoxes.length>2 || oBoxes.length>2) {
         console.log('calling winCheck function');
         checkWin();
     }
-
-    let t = event.target;
-    console.log("Cell ID: " + t.id); // ==> cell number
     if (turn % 2 === 0) {
         message.textContent = "Player O's turn";
         t.innerHTML = "X";
@@ -62,34 +61,62 @@ function handleClick(event) {
     }
 }
 
-function checkWin() {
-    for (i = 0; i < winPattern.length;  i++) {
-        console.log("looping thru XXX "+ winPattern[i])
-        if (xBoxes === winPattern[i]) {
-            winner.innerHTML = 'Player X wins';
-            console.log(winner);
-            return;
-        }
-        if (xBoxes.includes(winPattern[i][0]) && xBoxes.includes(winPattern[i][1]) && xBoxes.includes(winPattern[i][2])) {
-            winner.innerHTML = 'Player X wins';
-            console.log(winner);
-            return;
-        }
-    }
-    for (i = 0; i < winPattern.length;  i++) {
-        console.log("looping thru OOO "+ winPattern[i])
-        if (oBoxes.includes(winPattern[i][0]) && oBoxes.includes(winPattern[i][1]) && oBoxes.includes(winPattern[i][2])) {
-            winner.innerHTML = 'Player O wins';
-            console.log(winner);
-            return;
-        }
-        if (oBoxes === winPattern[i]) {
-            winner.innerHTML = 'Player O wins';
-            console.log(winner);
-            return;
-        }
-    }
+function strings () {
+    winPattern.forEach(function(element) {
+        winPatternStr.push(element.join(''));
+    });
+    console.log('Win Strings are: '+winPatternStr);
 }
+
+function checkWin() {
+    strings();
+//sort x 
+    xBoxes.sort(function(a,b) {return a-b});
+    let xStrings = xBoxes.join('');
+    console.log("xStrings: "+xStrings);
+//sort o 
+    oBoxes.sort(function(a,b) {return a-b});
+    let oStrings = oBoxes.join('');
+    console.log("oStrings: "+oStrings);
+    console.log("o:"+oBoxes);
+    winPatternStr.forEach(function(element) {
+        if (xStrings.includes(element)) {
+            winner.textContent = 'Player X wins!';
+            return;
+        }
+        else if (oStrings.includes(element)) {
+            winner.textContent = 'Player Y wins';
+            return;
+        }
+    });
+}
+    // console.log("checkWin xBoxes:" + xBoxes);
+    // console.log("checkWin oBoxes:"+ oBoxes)
+    // for (i = 0; i < winPattern.length;  i++) {
+    //     if (xBoxes === winPattern[i]) {
+    //         winner.innerHTML = 'Player X wins';
+    //         console.log(winner);
+    //         return;
+    //     }
+    //     if ((xBoxes.includes(winPattern[i][0])) && (xBoxes.includes(winPattern[i][1])) && (xBoxes.includes(winPattern[i][2]))) {
+    //         winner.innerHTML = 'Player X wins';
+    //         console.log(winner);
+    //         return;
+    //     }
+    // }
+    // for (i = 0; i < winPattern.length;  i++) {
+    //     if ((oBoxes.includes(winPattern[i][0])) && (oBoxes.includes(winPattern[i][1])) && (oBoxes.includes(winPattern[i][2]))) {
+    //         winner.innerHTML = 'Player O wins';
+    //         console.log(winner);
+    //         return;
+    //     }
+    //     if (oBoxes === winPattern[i]) {
+    //         winner.innerHTML = 'Player O wins';
+    //         console.log(winner);
+    //         return;
+    //     }
+    // }
+// }
 
 //call functions
 // init();
