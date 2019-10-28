@@ -21,16 +21,17 @@ let yWin = false;
 
 /*----- cached element references -----*/
 const message = document.getElementById('message');
-const winner = document.getElementById('winner');
+const board1 = document.querySelectorAll('.cell')
+const resetBtn = document.getElementById('reset');
 
 /*----- event listeners -----*/
-let board1 = document.querySelectorAll('.cell')
 
 board1.forEach(element => {
     // console.log(element)
     element.addEventListener('click', handleClick);
 });
 
+resetBtn.addEventListener('click',reset);
 
 /*----- functions -----*/
 function handleClick(event) {
@@ -46,15 +47,15 @@ function handleClick(event) {
         message.textContent = "Draw! Want to play again?";
         return;
     }
-    if (turn % 2 === 0) {
-        message.textContent = "Player O's turn";
+    if ((turn % 2 === 0) && t.innerHTML!=='X' &&t.innerHTML!=='O') {
+        message.textContent = "O's turn";
         t.innerHTML = "X";
         t.style.backgroundColor = 'red';
         xBoxes.push(t.id);
         console.log("xBoxes: " + xBoxes);
     }
-    if (turn % 2 === 1) {
-        message.textContent = "Player X's turn";
+    if ((turn % 2 === 1)  && t.innerHTML!=='X' &&t.innerHTML!=='O') {
+        message.textContent = "X's turn";
         t.innerHTML = "O";
         t.style.backgroundColor = 'yellow';
         oBoxes.push(t.id);
@@ -63,7 +64,7 @@ function handleClick(event) {
     checkWin();
 }
 
-function strings () {
+function strings () {  //turn win pattern into sets of strings
     winPattern.forEach(function(element) {
         winPatternStr.push(element.join(''));
     });
@@ -72,55 +73,43 @@ function strings () {
 
 function checkWin() {
     strings();
-//sort x 
+    //sort x 
     xBoxes.sort(function(a,b) {return a-b});
     let xStrings = xBoxes.join('');
     console.log("xStrings: "+xStrings);
-//sort o 
+    //sort o 
     oBoxes.sort(function(a,b) {return a-b});
     let oStrings = oBoxes.join('');
     console.log("oStrings: "+oStrings);
     console.log("o:"+oBoxes);
     winPatternStr.forEach(function(element) {
         if (xStrings.includes(element)) {
-            winner.textContent = 'Player X wins!';
+            message.textContent = 'X WINS!';
             xWin = true;
             return;
         }
         else if (oStrings.includes(element)) {
-            winner.textContent = 'Player Y wins';
+            message.textContent = 'O WINS';
             yWin = true;
             return;
         }
     });
 }
-    // console.log("checkWin xBoxes:" + xBoxes);
-    // console.log("checkWin oBoxes:"+ oBoxes)
-    // for (i = 0; i < winPattern.length;  i++) {
-    //     if (xBoxes === winPattern[i]) {
-    //         winner.innerHTML = 'Player X wins';
-    //         console.log(winner);
-    //         return;
-    //     }
-    //     if ((xBoxes.includes(winPattern[i][0])) && (xBoxes.includes(winPattern[i][1])) && (xBoxes.includes(winPattern[i][2]))) {
-    //         winner.innerHTML = 'Player X wins';
-    //         console.log(winner);
-    //         return;
-    //     }
-    // }
-    // for (i = 0; i < winPattern.length;  i++) {
-    //     if ((oBoxes.includes(winPattern[i][0])) && (oBoxes.includes(winPattern[i][1])) && (oBoxes.includes(winPattern[i][2]))) {
-    //         winner.innerHTML = 'Player O wins';
-    //         console.log(winner);
-    //         return;
-    //     }
-    //     if (oBoxes === winPattern[i]) {
-    //         winner.innerHTML = 'Player O wins';
-    //         console.log(winner);
-    //         return;
-    //     }
-    // }
-// }
 
-//call functions
+function reset() {
+    console.log('Reset starting');
+    let turn = 1;
+    let xBoxes = [];
+    let oBoxes = [];
+    let winPatternStr = [];
+    let xWin = false;
+    let yWin = false;
+    let message = "X's turn - click to start";
+    board1.forEach(function(element) {
+        element.style.backgroundColor = 'white';
+        element.innerHTML = '';
+    });
+} 
+
+//call functions?
 // init();
