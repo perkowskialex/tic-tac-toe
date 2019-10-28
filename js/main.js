@@ -9,14 +9,15 @@ const winPattern = [
     [4, 5, 6],
     [7, 8, 9]
 ];
-const gameDrawMove = 10; //when turn hits this number, declare draw
+const gameDrawMove = 11; //when turn hits this number, declare draw
+
+/*----- app's state (variables) -----*/
 let turn = 1;
 let xBoxes = [];
 let oBoxes = [];
 let winPatternStr = [];
-
-
-/*----- app's state (variables) -----*/
+let xWin = false;
+let yWin = false;
 
 /*----- cached element references -----*/
 const message = document.getElementById('message');
@@ -35,15 +36,15 @@ board1.forEach(element => {
 function handleClick(event) {
     turn++;
     let t = event.target; 
+    if (yWin || xWin) {
+        console.log("No click - game is over");
+        return; 
+    }
     console.log('turn: ' + turn);
     console.log("Cell ID: " + t.id); // ==> cell number
     if (turn >= gameDrawMove) {
         message.textContent = "Draw! Want to play again?";
         return;
-    }
-    if (xBoxes.length>2 || oBoxes.length>2) {
-        console.log('calling winCheck function');
-        checkWin();
     }
     if (turn % 2 === 0) {
         message.textContent = "Player O's turn";
@@ -59,6 +60,7 @@ function handleClick(event) {
         oBoxes.push(t.id);
         console.log("oBoxes: " + oBoxes);
     }
+    checkWin();
 }
 
 function strings () {
@@ -82,10 +84,12 @@ function checkWin() {
     winPatternStr.forEach(function(element) {
         if (xStrings.includes(element)) {
             winner.textContent = 'Player X wins!';
+            xWin = true;
             return;
         }
         else if (oStrings.includes(element)) {
             winner.textContent = 'Player Y wins';
+            yWin = true;
             return;
         }
     });
