@@ -108,7 +108,9 @@ function reset() {
     board1.forEach(function(element) {
         element.style.backgroundColor = 'white';
         element.innerHTML = '';
+        element.addEventListener('click', handleClick);
     });
+    console.log('Reset complete');
 } 
 
 //call functions?

@@ -21,6 +21,16 @@ header {
     text-align: center;
 }
 
+.top-row >.cell:hover {
+    background-color: lightslategrey;
+}
+.mid-row >.cell:hover {
+    background-color: lightslategrey;
+}
+.bot-row >.cell:hover {
+    background-color: lightslategrey;
+}
+
 #message {
     display: flex;
     flex-direction: row;
